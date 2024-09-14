@@ -1,0 +1,16 @@
+server:
+  port: 8999
+
+spring:
+  application:
+    name: Java-Ai
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql://127.0.0.1:3306/chat_ai?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false
+
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*.xml  # 如果使用XML文件
