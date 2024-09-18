@@ -5,12 +5,11 @@ import com.google.gson.*;
 import com.tencentcloudapi.hunyuan.v20230901.models.Message;
 import org.springframework.core.io.ClassPathResource;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class JsonUtils {
 
@@ -41,8 +40,11 @@ public class JsonUtils {
         String content;
         try {
             ClassPathResource resource = new ClassPathResource("init" + File.separator + filePath);
-            File file = resource.getFile();
-            content = new String(Files.readAllBytes(Paths.get(file.getAbsolutePath())));
+            InputStream inputStream = resource.getInputStream();
+            content = new BufferedReader(
+                    new InputStreamReader(inputStream, StandardCharsets.UTF_8))
+                    .lines()
+                    .collect(Collectors.joining("\n"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
