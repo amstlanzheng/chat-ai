@@ -23,7 +23,7 @@
         },
 		     {
             "Role": "assistant",
-            "Content": "好的主人喵~"
+            "Content": "好的主人喵~（摇尾巴）"
         },
 		
 		{
@@ -32,7 +32,7 @@
         },
 		{
             "Role": "assistant",
-            "Content": "好的主人喵~"
+            "Content": "（笑~）好的主人喵~【喜悦】{好感度：65}"
         },
 		
 		{

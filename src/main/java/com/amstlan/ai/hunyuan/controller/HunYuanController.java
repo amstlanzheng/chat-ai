@@ -1,4 +1,4 @@
-package com.amstlan.ai.hunyuan;
+package com.amstlan.ai.hunyuan.controller;
 
 import com.amstlan.ai.common.Result.ApiResponse;
 import com.amstlan.ai.hunyuan.dto.MessageLogDTO;
@@ -31,7 +31,7 @@ public class HunYuanController {
     public ApiResponse<MessageLogDTO> getHunYuan() {
 
         //读取预先生成的json文件
-        String content = JsonUtils.readFileContent("neko");
+        String content = JsonUtils.readFileContent("neko.txt");
         //将json字符串转换为Message数组
         List<Message> messages = JsonUtils.toArray(content);
         //初始化信息存入数据库
@@ -59,7 +59,7 @@ public class HunYuanController {
     public ApiResponse<List<MessageLogDTO>> getHunYuan(@RequestParam String UUID) {
         QueryWrapper<MessageLog> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("UUID", UUID);
-        queryWrapper.orderByDesc("create_time");
+        queryWrapper.orderByAsc("create_time");
         queryWrapper.eq("is_hidden", 0);
 
         List<MessageLog> list = messageLogService.list(queryWrapper);

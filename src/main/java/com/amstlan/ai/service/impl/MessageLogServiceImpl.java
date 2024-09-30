@@ -21,6 +21,7 @@ public class MessageLogServiceImpl extends ServiceImpl<MessageLogMapper, Message
     public String saveMessageLogs(List<Message> messages) {
         String uuid = UUID.randomUUID().toString();
         List<MessageLog> messageLogList = new ArrayList<>();
+        int size = 0;
         for (Message message : messages) {
             MessageLog messageLog = new MessageLog();
             messageLog.setUUID(uuid);
@@ -29,8 +30,8 @@ public class MessageLogServiceImpl extends ServiceImpl<MessageLogMapper, Message
             //初始化的对话不需要给用户
             messageLog.setIsHidden(1);
             long timeMillis = System.currentTimeMillis();
-            messageLog.setCreateTime(timeMillis);
-            messageLog.setUpdateTime(timeMillis);
+            messageLog.setCreateTime(timeMillis + size++);
+            messageLog.setUpdateTime(timeMillis + size++);
             messageLogList.add(messageLog);
         }
         this.saveBatch(messageLogList);
